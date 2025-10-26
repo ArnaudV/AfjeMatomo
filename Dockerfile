@@ -15,7 +15,7 @@ RUN chmod 0644 /etc/cron.d/matomo-cron && \
 # Create entrypoint script to start cron and the main process
 RUN echo '#!/bin/bash\n\
 cron\n\
-exec docker-php-entrypoint "$@"' > /usr/local/bin/custom-entrypoint.sh && \
+exec /entrypoint.sh "$@"' > /usr/local/bin/custom-entrypoint.sh && \
     chmod +x /usr/local/bin/custom-entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/custom-entrypoint.sh"]
