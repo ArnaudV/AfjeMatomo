@@ -1,0 +1,49 @@
+service: afje-matomo
+image: arnaudv/afje-matomo
+
+servers:
+  web:
+    hosts:
+      - 51.159.96.253
+
+# Kamal Proxy configuration
+proxy:
+  ssl: true
+  hosts:
+    - stats.afje.org
+  healthcheck:
+    path: /
+    interval: 10
+
+# Registry configuration
+registry:
+  server: ghcr.io
+  username: ArnaudV
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+# SSH configuration
+ssh:
+  user: kiathos
+  port: 4795
+
+env:
+  clear:
+    MATOMO_DATABASE_HOST: 195.154.91.37
+    MATOMO_DATABASE_DBNAME: afje_matomo
+    MATOMO_DATABASE_USERNAME: afje_matomo
+    MATOMO_DATABASE_TABLES_PREFIX: matomo_
+  secret:
+    - MATOMO_DATABASE_PASSWORD
+
+# Builder configuration
+builder:
+  arch: amd64
+
+# Deployment timeout settings
+deploy_timeout: 60
+drain_timeout: 30
+
+volumes:
+  - "afje-matomo-data:/var/www/html"
+

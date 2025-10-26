@@ -1,0 +1,2 @@
+# Matomo archiving cron job - runs hourly at 5 minutes past the hour
+5 * * * * www-data /usr/local/bin/php /var/www/html/console core:archive --url=https://www.monaviscitoyen.fr > /proc/1/fd/1 2>&1
