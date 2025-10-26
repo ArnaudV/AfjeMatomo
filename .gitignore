@@ -1,0 +1,8 @@
+
+# Kamal deployment
+/.kamal/secrets
+/.kamal/lock-*
+/.kamal/cache/
+
+# PhpStorm
+/.idea*
